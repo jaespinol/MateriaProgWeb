@@ -17,6 +17,8 @@ text-align:center;
 }
 header h2 {
 margin: 0px;
+font-size: 30px;
+color: white;
 }
 h1 {
 font-size: 72px;
@@ -143,8 +145,9 @@ color:#FFFFFF;
 text-align:center;
 padding: 15px;
 }
+
 footer h2 {
-font-size: 14px;
+font-size: 30px;
 color: white;
 }
 /* links */
