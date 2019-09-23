@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+.Hola{
+    background-color: rgb(49, 243, 178);
+}
 body {
 background-color:#CCCCCC;
 font-family:Geneva,Arial,Helvetica,sans-serif;
@@ -10,7 +13,7 @@ border:solid;
 border-color:#FFFFFF;
 }
 header {
-background-color: #F47D31;
+background-color: rgb(177, 162, 153);
 display:block;
 color:#FFFFFF;
 text-align:center;

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uso de Controles HTML 5</title>
+</head>
+
+<body>
+<form name="frmPrincipal" method="post" action="" > <!--novalidate>-->
+  <p>Nombre
+  <input type="text" name="txtNombre" id="txtNombre" placeholder="John Ratzenberger" autofocus><br>
+  <input type="button" name="txtNombre1" id="txtNombre1"><br>
+  <input  type="file" name="txtNombre2" id="txtNombre2"><br>
+  <input type="hidden" name="txtNombre3" ><br>
+  <input name="txtNombre4" type="image" id="txtNombre4" src="LazoNegro.jpg"><br>
+  <input type="password" name="txtNombre4" id="txtNombre4"><br>
+  <input type="reset" name="txtNombre5" id="txtNombre5"><br>
+  <input type="submit" name="txtNombre4" id="txtNombre4"><br>
+  <input name="CBEjemplo" type="checkbox"  value="RBEjemplo"> Hola Mundo <br>
+  <input type="radio" name="radio" id="RBEjemplo" value="RBEjemplo">
+  <label for="RBEjemplo">Hola Mundo</label><br><br>
+  
+  <input type="email" required placeholder="jaespinol@gmail.com" > 
+  <input type="submit" value="Go"><br><br>
+  <input type="url">
+  <input type="submit" value="Go"><br><br>
+  <input type="number"
+       min="0"
+       max="10"
+       step="2"
+       value="6">
+   <input type="submit" value="Go"><br><br>
+   <input type="range"
+       min="0"
+       max="10"
+       step="2"
+       value="6">
+    <input type="submit" value="Go"><br><br>
+    <input name="birthday" type="date">
+    <script>
+  var i = document.createElement("input");
+  i.setAttribute("type", "date");
+  if (i.type == "text") {
+    // No native date picker support :(
+    // Use Dojo/jQueryUI/YUI/Closure to create one,
+    // then dynamically replace that <input> element.
+  }
+</script>
+  <input type="submit" value="Go">
+    <input name="t" type="datetime">
+  <input type="submit" value="Go">
+  <input name="m" type="month">
+  <input type="submit" value="Go">
+  <input name="w" type="week">
+  <input type="submit" value="Go">
+  <input name="t" type="time">
+  <input type="submit" value="Go"><br><br>
+  <input name="q" type="search" required>
+  <input type="submit" value="Find"><br><br>
+  <input type="color"><br><br>
+  
+  
+  
+  </p>
+</form>
+</body>
+</html>
