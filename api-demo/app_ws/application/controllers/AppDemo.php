@@ -48,7 +48,6 @@ class AppDemo extends REST_Controller
                         'ip' => $query->row()->ip,
                     ]
                 );
-
                 $jwt = JWT::encode($token, $key);
                 $respuesta = array(
                     'token' => $jwt,

@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+
+<html leng="es">
+<!--Head-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Inicio de Sesion | App DEMO</title>
+
+    <meta name="description" content="Inicio de Sesion del Programa Apoyo Alimentario" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- <link id="bootstrap-rtl-link" href="" rel="stylesheet" /> -->
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/typicons.min.css" type="text/css" />
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="../assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="../assets/css/demo.min.css" rel="stylesheet" />
+    <link href="../assets/css/animate.min.css" rel="stylesheet" />
+
+    <link id="skin_link" href="../assets/css/skins/oxford.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="../assets/js/skins.min.js"></script>
+    <style>
+        .form-control,
+        select {
+            font-size: 16px;
+        }
+
+        .btn-info,
+        .btn-info:focus {
+            background-color: #337ab7 !important;
+            border-color: #337ab7;
+            color: #fff;
+        }
+
+        .bordered-blue {
+            border-color: #337ab7 !important;
+        }
+    </style>
+</head>
+<!--Head Ends-->
+<!--Body-->
+
+<body>
+    <div class="login-container animated fadeInDown">
+        <div class="loginbox bg-white">
+            <div class="loginbox-title" style="color: #34414c;"><b>Inicio de Sesión</b></div>
+            <div style="width: 100%;">
+            </div>
+
+            <div class="col-sm-12">
+                <div id="FText"></div>
+            </div>
+            <div class="loginbox-textbox">
+                <input type="email" id="Email" class="form-control" placeholder="Correo Electronico" required />
+            </div>
+            <div class="loginbox-textbox">
+                <input type="password" id="Password" class="form-control" placeholder="Contraseña" required />
+            </div>
+            <div class="loginbox-forgot">
+                <div class="checkbox">
+                    <label>
+                        <input id="ShowPassword" type="checkbox">
+                        <span class="text">Mostrar Contrseña</span>
+                    </label>
+                </div>
+            </div>
+            <div class="loginbox-submit">
+                <!-- <asp:Button class="btn btn-info btn-block" UseSubmitBehavior="true" Text="Iniciar sesión" runat="server" OnClick="BtnIniciar_Click" /> -->
+                <input type="button" class="btn btn-info btn-block" href="javascript:;" onclick="postLogin()"
+                    role="button" value="Iniciar sesión" />
+            </div>
+        </div>
+        <div class="logobox">
+            <div class=" text-right">
+                <b>v. 1.0.0</b>
+            </div>
+            <div class=" text-center">
+                <b>Aplicación Web | DEMO</b>
+            </div>
+        </div>
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="../assets/js/beyond.js"></script>
+
+    <link href="../assets/css/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../assets/js/sweetalert.min.js"></script>
+
+    <script src="../assets/js/jwt-decode.js"></script>
+    <script>
+        $(document).ready(function () {
+            //CheckBox mostrar contraseña
+            sessionStorage.clear();
+            $('#ShowPassword').click(function () {
+                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+            });
+        });
+
+        function postLogin() {
+            var email = document.getElementById("Email").value;
+            var pass = document.getElementById("Password").value;
+            if (email != "" && pass != "") {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://localhost/api-demo/app_ws/AppDemo/login",
+                    data: "{\"correo\":\"" + email + "\",\"password\":\"" + pass + "\"}",
+                    async: false,
+                    dataType: 'json',
+                    success: function (response) {
+                        var decoded = jwt_decode(response.token);
+                        // var datos = decoded.data;
+                        sessionStorage.setItem("rol", decoded.data.idrol);
+                        sessionStorage.setItem("iduser", decoded.data.idusuario);
+                        sessionStorage.setItem("cat", decoded.data.idcategoria);
+                        sessionStorage.setItem("subcat", decoded.data.idsubcategoria);
+                        sessionStorage.setItem("nombre", decoded.data.nombre);
+                        sessionStorage.setItem("edicion", decoded.data.edicion);
+                        sessionStorage.setItem("ip", decoded.data.ip);
+                        sessionStorage.setItem("message", decoded.data.message);
+                        document.cookie = "APSesion=true; path=/; max-age=" + decoded.exp + "";
+                        location.href = "../index";
+                        // switch (sessionStorage.getItem("rol")) {
+                        //     case "1":
+                        //         location.href = "../Dashboard";
+                        //         break;
+                        //     case "2":
+                        //         location.href = "../DashboardAdmin";
+                        //         break;
+                        //     case "3":
+                        //         location.href = "../DashboardCoor";
+                        //         break;
+                        //     default:
+                        //         //$('#SitioName').html(" ");
+                        //         location.href = "login";
+                        //         break;
+                        // }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        sweetAlert('Datos de Usuario', 'Verifique su Usuario y Contraseña. ' + XMLHttpRequest.responseJSON.message, 'error');
+                    }
+                })
+            }
+            else {
+                sweetAlert('Inicio de Sesión', 'Datos de Usuario y Contraseña Requeridos.', 'error');
+            }
+        };
+    </script>
+
+</body>
+<!--Body Ends-->
+
+</html>

@@ -85,9 +85,5 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 // Subir
 define('SERVIDOR', $_SERVER['DOCUMENT_ROOT']);
-define('SERVIDOR_INSPECCIONES', 'http://appinspeccion.vhten.com/');
-define('APP', '/MINI_CIAC/');
-define('WS', '/app_ws/');
 define('URL_IMAGENES', 'application/assets/images/');
-
 define('URL_IMAGENES_RONDINES', 'application/assets/images_rondines/');

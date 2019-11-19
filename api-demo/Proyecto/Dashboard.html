@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard | App DEMO</title>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <!--Basic Styles-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link id="bootstrap_rtl_link" href="" rel="stylesheet" /> -->
+
+
+    <!--Fonts-->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/typicons.min.css" type="text/css" />
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="assets/css/demo.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="assets/js/skins.min.js"></script>
+
+    <style>
+        .page-sidebar .sidebar-menu a .menu-icon {
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <!-- Loading Container -->
+        <div class="loading-container">
+            <div class="loader"></div>
+        </div>
+        <!--  /Loading Container -->
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="navbar-container">
+                    <!-- Navbar Barnd -->
+                    <div class="navbar-header pull-left">
+                        <div class="navbar-brand" style="font-size:18px; text-align:right;"><b>Aplicación Web<br />
+                                DEMO</b></div>
+                    </div>
+                    <!-- /Navbar Barnd -->
+                    <!-- Sidebar Collapse -->
+                    <div class="sidebar-collapse" id="sidebar-collapse">
+                        <i class="collapse-icon fa fa-bars"></i>
+                    </div>
+                    <!-- /Sidebar Collapse -->
+                    <!-- Account Area and Settings --->
+                    <div class="navbar-header pull-right">
+                        <div class="navbar-account">
+                            <ul class="account-area">
+                                <li>
+                                    <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                        <div class="avatar" title="Perfil de Usuario">
+                                            <img src="assets/img/avatars/perfil.jpg">
+                                        </div>
+                                        <section>
+                                            <h2><span class="profile"><span><b id="UserName"></b></span></span></h2>
+                                        </section>
+                                    </a>
+                                    <!--Login Area Dropdown-->
+                                    <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                        <li class="username2"><a>
+                                                <div id="UserName2"></div>
+                                            </a></li>
+                                        <!-- <li class="email2"><a>
+                                                <div id="Email"></div>
+                                            </a></li> -->
+                                        <!--/Theme Selector Area-->
+                                        <li class="dropdown-footer">
+                                            <a runat="server" href="Account/login">Cerrar Sesion
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!--/Login Area Dropdown-->
+                                </li>
+                                <!-- /Account Area -->
+                                <!--Note: notice that setting div must start right after account area list.
+                            no space must be between these elements-->
+                                <!-- Settings -->
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- /Account Area and Settings -->
+                </div>
+            </div>
+        </div>
+        <!-- /Navbar -->
+        <!-- Main Container -->
+        <div class="main-container container-fluid">
+            <!-- Page Container -->
+            <div class="page-container">
+                <!-- Page Sidebar   menu-compact -->
+                <div class="page-sidebar " id="sidebar">
+                    <!-- Sidebar Menu -->
+                    <ul class="nav sidebar-menu">
+                        <!--Dashboard-->
+                        <li class="active">
+                            <a href="Dashboard">
+                                <i class="menu-icon glyphicon glyphicon-home"></i>
+                                <span class="menu-text"> Dashboard </span>
+                            </a>
+                        </li>
+                        <!--Captura-->
+                        <li>
+                            <a href="#" class="menu-dropdown">
+                                <i class="menu-icon fa fa-pencil-square-o"></i>
+                                <span class="menu-text"> Captura </span>
+                                <i class="menu-expand"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="#" onclick="modBlank();">
+                                        <span class="menu-text">Captura de Usuarios</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" onclick="modHistorial();">
+                                <i class="menu-icon fa fa-archive "></i>
+                                <span class="menu-text"> Historial</span>
+                            </a>
+                        </li>
+                        <!--Cerrar Sesión-->
+                        <li>
+                            <a href="Account/login">
+                                <i class="menu-icon glyphicon glyphicon-off themesecondary"></i>
+                                <span class="menu-text"> Cerrar Sesión</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /Sidebar Menu -->
+                </div>
+                <!-- /Page Sidebar -->
+                <!-- Page Content -->
+                <div class="page-content">
+                    <!-- Page Breadcrumb -->
+                    <div class="page-breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="Dashboard">Inicio</a>
+                            </li>
+                            <li class="active">Dashboard</li>
+                        </ul>
+                    </div>
+                    <!-- /Page Breadcrumb -->
+                    <!-- Page Header -->
+                    <div class="page-header position-relative">
+                        <div class="header-title">
+                            <h1>
+                                Dashboard
+                            </h1>
+                        </div>
+                    </div>
+                    <!-- /Page Header -->
+                    <!-- Page Body -->
+                    <div class="page-body" id="container">
+
+                    </div>
+                    <!-- /Page Body -->
+                </div>
+                <!-- /Page Content -->
+            </div>
+            <!-- /Page Container -->
+            <!-- Main Container -->
+        </div>
+    </form>
+
+    <!--Basic Scripts-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="assets/js/beyond.js"></script>
+
+    <script src="assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="assets/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="assets/js/datatable/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var message = sessionStorage.getItem("message");
+            var miCookie = readCookie("APSesion");
+            var miSesion = (miCookie === 'true');
+            if (message != "Autentificado" || !miSesion) {
+                location.href = "Account/Login";
+                sessionStorage.clear();
+            } else {
+                if (sessionStorage.getItem("rol") == '1') {
+                    var myRol = sessionStorage.getItem("rol");
+                    $('#Email').html(sessionStorage.getItem("Email"));
+                    $('#UserName2').html(sessionStorage.getItem("nombre"));
+                    $('#UserName').html("Bienvenido " + sessionStorage.getItem("nombre"));
+                    //PorVisitar();
+                    $("#container").empty();
+                    $("#container").load("pages/dashboard.html", function () {
+
+                    });
+                } else {
+                    location.href = "Account/Login";
+                    sessionStorage.clear();
+                    document.cookie = "APSesion=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+            }
+        });
+        function PorVisitar() {
+            var encuestados = 0, pendientes = 0;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "http://localhost/api-demo/app_ws/AppDemo/",
+                data: "{\"idusuario\":\"" + sessionStorage.getItem("iduser") + "\" }",
+                success: function (response) {
+                    var dataHTML = "<thead class=\"flip-content bordered-palegreen\"><tr><th>ID</th> <th >NOMBRE</th> <th>ACCION</th></tr></thead><tbody>";
+                    var datos = response.registros;
+                    var strAcciones;
+                    $.each(datos, function (key, val) {
+                        if (!val.encuestado) {
+                            strAcciones = "<button id='BtnVer" + val.idintegrante_comite + "' CausesValidation='False' data-toggle='tooltip' data-placement='top' ToolTip='Clic para Censar' class='tooltip-info btn btn-success' onClick='IrARegistro(" + val.idintegrante_comite + ");return false;'><i class='fa fa-pencil-square-o'></i> CENSAR</button>";
+                            dataHTML += '<tr><td><b>' + val.idintegrante_comite + '</b></td><td>' + val.ncompleto + '<br />' + val.direccion + '<br />' + val.colonia + '</td><td class=" text-center">' + strAcciones + '</td></tr>';
+                            encuestados++;
+                        } else {
+                            pendientes++;
+                        }
+                    });
+                    dataHTML += " </tbody>";
+                    $('#tbl_porvisitar').html(dataHTML);
+                    $('#totalEncuestados').html(encuestados);
+                    $('#totalPendientes').html(pendientes);
+                    // if ($.fn.dataTable.isDataTable('#tbl_porvisitar')) {
+                    //     table.destroy();
+                    //     table = $('#tbl_porvisitar').DataTable({ destroy: true, ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
+                    // }
+                    // else {
+                    //     table = $('#tbl_porvisitar').DataTable({ ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
+                    // }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //document.getElementById('FText').innerHTML = '<div class="alert alert-danger" ID="ErrorMessage"><div>Favor de revisar su conexion de Internet.</div></div>';
+                    sweetAlert('Conexión', 'Favor de revisar su conexion de Internet.', 'error');
+                }
+            });
+        }
+        // function IrARegistro(id) {
+        //     location.href = "ApoyoAlimentario/Captura/index?id=" + id;
+        // };
+        function modBlank() {
+            $("#container").empty();
+            $("#container").load("pages/blank.html", function () {
+            });
+        };
+        function modHistorial() {
+            $("#container").empty();
+            $("#container").load("pages/Historial.html", function () {
+            });
+        };
+    </script>
+</body>
+
+</html>
