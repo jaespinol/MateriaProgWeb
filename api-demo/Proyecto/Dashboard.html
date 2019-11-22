@@ -205,7 +205,7 @@
                     $('#Email').html(sessionStorage.getItem("Email"));
                     $('#UserName2').html(sessionStorage.getItem("nombre"));
                     $('#UserName').html("Bienvenido " + sessionStorage.getItem("nombre"));
-                    //PorVisitar();
+                    PorVisitar();
                     $("#container").empty();
                     $("#container").load("pages/dashboard.html", function () {
 
@@ -218,35 +218,38 @@
             }
         });
         function PorVisitar() {
-            var encuestados = 0, pendientes = 0;
+            var activos = 0, desactivos = 0;
             $.ajax({
-                type: "POST",
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "http://localhost/api-demo/app_ws/AppDemo/",
-                data: "{\"idusuario\":\"" + sessionStorage.getItem("iduser") + "\" }",
+                url: "http://localhost/api-demo/app_ws/AppDemo/ls_user",
+                //data: "{\"idusuario\":\"" + sessionStorage.getItem("iduser") + "\" }",
                 success: function (response) {
-                    var dataHTML = "<thead class=\"flip-content bordered-palegreen\"><tr><th>ID</th> <th >NOMBRE</th> <th>ACCION</th></tr></thead><tbody>";
-                    var datos = response.registros;
+                    var dataHTML = "<thead class=\"flip-content bordered-palegreen\"><tr><th>ID</th> <th >NOMBRE</th><th >ROL</th> <th >CORREO</th><th>ACCION</th></tr></thead><tbody>";
+                    var datos = response.usuarios;
                     var strAcciones;
                     $.each(datos, function (key, val) {
-                        if (!val.encuestado) {
-                            strAcciones = "<button id='BtnVer" + val.idintegrante_comite + "' CausesValidation='False' data-toggle='tooltip' data-placement='top' ToolTip='Clic para Censar' class='tooltip-info btn btn-success' onClick='IrARegistro(" + val.idintegrante_comite + ");return false;'><i class='fa fa-pencil-square-o'></i> CENSAR</button>";
-                            dataHTML += '<tr><td><b>' + val.idintegrante_comite + '</b></td><td>' + val.ncompleto + '<br />' + val.direccion + '<br />' + val.colonia + '</td><td class=" text-center">' + strAcciones + '</td></tr>';
-                            encuestados++;
+                        if (val.activo) {
+                            strAcciones = "<button id='BtnVer" + val.id + "' CausesValidation='False' data-toggle='tooltip' data-placement='top' ToolTip='Clic para Censar' class='tooltip-info btn btn-success' onClick='IrARegistro(" + val.id + ");return false;'><i class='fa fa-pencil-square-o'></i> EDITAR</button>";
+
+                            dataHTML += '<tr><td><b>' + val.id + '</b></td><td>' + val.nombre + '</td><td>' + val.rol + '</td><td>' + val.correo + '</td><td class=" text-center">' + strAcciones + '</td></tr>';
+                            activos++;
                         } else {
-                            pendientes++;
+                            strAcciones = "";
+                            dataHTML += '<tr><td><b>' + val.id + '</b></td><td>' + val.nombre + '</td><td>' + val.rol + '</td><td>' + val.correo + '</td><td class=" text-center">' + strAcciones + '</td></tr>';
+                            desactivos++;
                         }
                     });
                     dataHTML += " </tbody>";
-                    $('#tbl_porvisitar').html(dataHTML);
-                    $('#totalEncuestados').html(encuestados);
-                    $('#totalPendientes').html(pendientes);
-                    // if ($.fn.dataTable.isDataTable('#tbl_porvisitar')) {
+                    $('#tbl_usuarios').html(dataHTML);
+                    $('#totalEncuestados').html(activos);
+                    $('#totalPendientes').html(desactivos);
+                    // if ($.fn.dataTable.isDataTable('#tbl_usuarios')) {
                     //     table.destroy();
-                    //     table = $('#tbl_porvisitar').DataTable({ destroy: true, ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
+                    //     table = $('#tbl_usuarios').DataTable({ destroy: true, ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
                     // }
                     // else {
-                    //     table = $('#tbl_porvisitar').DataTable({ ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
+                    //     table = $('#tbl_usuarios').DataTable({ ordering: true, searching: true, info: true, paging: true, language: { 'url': 'assets/js/Spanish.html' } });
                     // }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
