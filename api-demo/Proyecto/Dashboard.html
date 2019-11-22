@@ -13,7 +13,6 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- <link id="bootstrap_rtl_link" href="" rel="stylesheet" /> -->
 
-
     <!--Fonts-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/typicons.min.css" type="text/css" />
@@ -73,9 +72,9 @@
                                         <li class="username2"><a>
                                                 <div id="UserName2"></div>
                                             </a></li>
-                                        <!-- <li class="email2"><a>
-                                                <div id="Email"></div>
-                                            </a></li> -->
+                                        <li class="email2"><a>
+                                                <div id="Email">dsds</div>
+                                            </a></li>
                                         <!--/Theme Selector Area-->
                                         <li class="dropdown-footer">
                                             <a runat="server" href="Account/login">Cerrar Sesion
@@ -114,21 +113,21 @@
                         </li>
                         <!--Captura-->
                         <li>
-                            <a href="#" class="menu-dropdown">
+                            <a href="javascript:;" class="menu-dropdown">
                                 <i class="menu-icon fa fa-pencil-square-o"></i>
                                 <span class="menu-text"> Captura </span>
                                 <i class="menu-expand"></i>
                             </a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="#" onclick="modBlank();">
+                                    <a href="javascript:;" onclick="modBlank();">
                                         <span class="menu-text">Captura de Usuarios</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" onclick="modHistorial();">
+                            <a href="javascript:;" onclick="modHistorial();">
                                 <i class="menu-icon fa fa-archive "></i>
                                 <span class="menu-text"> Historial</span>
                             </a>
@@ -196,6 +195,7 @@
             var message = sessionStorage.getItem("message");
             var miCookie = readCookie("APSesion");
             var miSesion = (miCookie === 'true');
+            
             if (message != "Autentificado" || !miSesion) {
                 location.href = "Account/Login";
                 sessionStorage.clear();

@@ -130,13 +130,13 @@
                         // var datos = decoded.data;
                         sessionStorage.setItem("rol", decoded.data.idrol);
                         sessionStorage.setItem("iduser", decoded.data.idusuario);
-                        sessionStorage.setItem("cat", decoded.data.idcategoria);
-                        sessionStorage.setItem("subcat", decoded.data.idsubcategoria);
                         sessionStorage.setItem("nombre", decoded.data.nombre);
                         sessionStorage.setItem("edicion", decoded.data.edicion);
                         sessionStorage.setItem("ip", decoded.data.ip);
+                        sessionStorage.setItem("Email", decoded.data.correo);
                         sessionStorage.setItem("message", decoded.data.message);
                         document.cookie = "APSesion=true; path=/; max-age=" + decoded.exp + "";
+                        //sweetAlert('Datos de Usuario', 'Verifique su Usuario y Contraseña. ', 'info');
                         location.href = "../index";
                         // switch (sessionStorage.getItem("rol")) {
                         //     case "1":
@@ -153,6 +153,7 @@
                         //         location.href = "login";
                         //         break;
                         // }
+                        
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         sweetAlert('Datos de Usuario', 'Verifique su Usuario y Contraseña. ' + XMLHttpRequest.responseJSON.message, 'error');
